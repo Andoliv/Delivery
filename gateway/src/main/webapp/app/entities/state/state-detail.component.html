@@ -1,0 +1,34 @@
+<div *ngIf="state">
+    <h2><span jhiTranslate="deliveryApp.state.detail.title">State</span> {{state.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="deliveryApp.state.name">Name</span></dt>
+        <dd>
+            <span>{{state.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.state.symbol">Symbol</span></dt>
+        <dd>
+            <span>{{state.symbol}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.state.country">Country</span></dt>
+        <dd>
+            <div *ngIf="state.country">
+                <a [routerLink]="['/country', state.country?.id]">{{state.country?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'state/'+ state.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,22 @@
+{
+    "deliveryApp": {
+        "deliveryMan": {
+            "home": {
+                "title": "Delivery Men",
+                "createLabel": "Criar novo Delivery Man",
+                "createOrEditLabel": "Criar ou editar Delivery Man"
+            },
+            "created": "Um novo Delivery Man foi criado com o identificador {{ param }}",
+            "updated": "Um Delivery Man foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Delivery Man foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Delivery Man {{ id }}?"
+            },
+            "detail": {
+                "title": "Delivery Man"
+            },
+            "salary": "Salary",
+            "userExtra": "User Extra"
+        }
+    }
+}

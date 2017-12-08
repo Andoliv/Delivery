@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "deliveryMan",
+            "otherEntityName": "deliveryMan",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "expectedDistance",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "travelledDistance",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "expectedCost",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "totalCost",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "deliveryQuality",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentQuality",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "expectedTime",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "deliveryTime",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20171208193917",
+    "entityTableName": "delivery",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

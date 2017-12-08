@@ -1,0 +1,104 @@
+<div>
+    <h2>
+        <span jhiTranslate="deliveryApp.delivery.home.title">Deliveries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-delivery"
+                [routerLink]="['/', { outlets: { popup: ['delivery-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span jhiTranslate="deliveryApp.delivery.home.createLabel">
+            Create new Delivery
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="deliveries">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="title"><span jhiTranslate="deliveryApp.delivery.title">Title</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="description"><span jhiTranslate="deliveryApp.delivery.description">Description</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="value"><span jhiTranslate="deliveryApp.delivery.value">Value</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="expectedDistance"><span jhiTranslate="deliveryApp.delivery.expectedDistance">Expected Distance</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="travelledDistance"><span jhiTranslate="deliveryApp.delivery.travelledDistance">Travelled Distance</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="expectedCost"><span jhiTranslate="deliveryApp.delivery.expectedCost">Expected Cost</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="totalCost"><span jhiTranslate="deliveryApp.delivery.totalCost">Total Cost</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="deliveryQuality"><span jhiTranslate="deliveryApp.delivery.deliveryQuality">Delivery Quality</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="paymentQuality"><span
+                    jhiTranslate="deliveryApp.delivery.paymentQuality">Payment Quality</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="expectedTime"><span jhiTranslate="deliveryApp.delivery.expectedTime">Expected Time</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="deliveryTime"><span jhiTranslate="deliveryApp.delivery.deliveryTime">Delivery Time</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="deliveryMan.id"><span jhiTranslate="deliveryApp.delivery.deliveryMan">Delivery Man</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="client.id"><span jhiTranslate="deliveryApp.delivery.client">Client</span> <span
+                    class="fa fa-sort"></span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+                   [infiniteScrollDistance]="0">
+            <tr *ngFor="let delivery of deliveries ;trackBy: trackId">
+                <td><a [routerLink]="['../delivery', delivery.id ]">{{delivery.id}}</a></td>
+                <td>{{delivery.title}}</td>
+                <td>{{delivery.description}}</td>
+                <td>{{delivery.value}}</td>
+                <td>{{delivery.expectedDistance}}</td>
+                <td>{{delivery.travelledDistance}}</td>
+                <td>{{delivery.expectedCost}}</td>
+                <td>{{delivery.totalCost}}</td>
+                <td>{{delivery.deliveryQuality}}</td>
+                <td>{{delivery.paymentQuality}}</td>
+                <td>{{delivery.expectedTime}}</td>
+                <td>{{delivery.deliveryTime}}</td>
+                <td>
+                    <div *ngIf="delivery.deliveryMan">
+                        <a [routerLink]="['../delivery-man', delivery.deliveryMan?.id ]">{{delivery.deliveryMan?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="delivery.client">
+                        <a [routerLink]="['../client', delivery.client?.id ]">{{delivery.client?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../delivery', delivery.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

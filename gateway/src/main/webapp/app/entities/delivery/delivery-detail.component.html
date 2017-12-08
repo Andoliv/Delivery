@@ -1,0 +1,76 @@
+<div *ngIf="delivery">
+    <h2><span jhiTranslate="deliveryApp.delivery.detail.title">Delivery</span> {{delivery.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="deliveryApp.delivery.title">Title</span></dt>
+        <dd>
+            <span>{{delivery.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.description">Description</span></dt>
+        <dd>
+            <span>{{delivery.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.value">Value</span></dt>
+        <dd>
+            <span>{{delivery.value}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.expectedDistance">Expected Distance</span></dt>
+        <dd>
+            <span>{{delivery.expectedDistance}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.travelledDistance">Travelled Distance</span></dt>
+        <dd>
+            <span>{{delivery.travelledDistance}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.expectedCost">Expected Cost</span></dt>
+        <dd>
+            <span>{{delivery.expectedCost}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.totalCost">Total Cost</span></dt>
+        <dd>
+            <span>{{delivery.totalCost}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.deliveryQuality">Delivery Quality</span></dt>
+        <dd>
+            <span>{{delivery.deliveryQuality}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.paymentQuality">Payment Quality</span></dt>
+        <dd>
+            <span>{{delivery.paymentQuality}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.expectedTime">Expected Time</span></dt>
+        <dd>
+            <span>{{delivery.expectedTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.deliveryTime">Delivery Time</span></dt>
+        <dd>
+            <span>{{delivery.deliveryTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.deliveryMan">Delivery Man</span></dt>
+        <dd>
+            <div *ngIf="delivery.deliveryMan">
+                <a [routerLink]="['/delivery-man', delivery.deliveryMan?.id]">{{delivery.deliveryMan?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.delivery.client">Client</span></dt>
+        <dd>
+            <div *ngIf="delivery.client">
+                <a [routerLink]="['/client', delivery.client?.id]">{{delivery.client?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

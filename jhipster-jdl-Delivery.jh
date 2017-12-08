@@ -1,0 +1,69 @@
+entity UserExtra {
+	firstName String required,
+	lastName String required,
+	email String,
+	phoneNumber String required,
+    comments String
+}
+
+entity DeliveryMan {
+	salary String
+}
+
+entity Client {
+	score Integer
+}
+
+entity Location {
+	streetAddress String required,
+    numberAddress Integer required,
+    neighborhood String required,
+	postalCode String,
+}
+
+entity Country {
+	name String required,
+    symbol String required
+}
+
+entity State {
+	name String required,
+    symbol String required
+}
+
+entity City {
+	name String required,
+    symbol String
+}
+
+entity Delivery {
+	title String,
+	description String,
+    value Long required,
+    expectedDistance Long,
+    travelledDistance Long,
+    expectedCost Long,
+    totalCost Long,
+  	deliveryQuality String,
+    paymentQuality String,
+    expectedTime Long,
+    deliveryTime Long    
+}
+
+relationship OneToOne {
+	UserExtra{location} to Location
+	DeliveryMan{userExtra} to UserExtra
+    Client{userExtra} to UserExtra    
+}
+
+relationship ManyToOne {
+	Delivery{deliveryMan} to DeliveryMan
+    Delivery{client} to Client
+	Location{city} to City
+	City{state} to State
+    State{country} to Country
+}
+
+// Set pagination options
+paginate Client, Delivery, DeliveryMan with infinite-scroll
+

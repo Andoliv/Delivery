@@ -1,0 +1,30 @@
+<div *ngIf="deliveryMan">
+    <h2><span jhiTranslate="deliveryApp.deliveryMan.detail.title">Delivery Man</span> {{deliveryMan.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="deliveryApp.deliveryMan.salary">Salary</span></dt>
+        <dd>
+            <span>{{deliveryMan.salary}}</span>
+        </dd>
+        <dt><span jhiTranslate="deliveryApp.deliveryMan.userExtra">User Extra</span></dt>
+        <dd>
+            <div *ngIf="deliveryMan.userExtra">
+                <a [routerLink]="['/user-extra', deliveryMan.userExtra?.id]">{{deliveryMan.userExtra?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'delivery-man/'+ deliveryMan.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,85 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUserExtraLabel" jhiTranslate="deliveryApp.userExtra.home.createOrEditLabel">Create
+            or edit a User Extra</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!userExtra.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="userExtra.id" readonly/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.userExtra.firstName" for="field_firstName">First
+                Name</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                   [(ngModel)]="userExtra.firstName" required/>
+            <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.firstName?.errors?.required"
+                       jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.userExtra.lastName" for="field_lastName">Last
+                Name</label>
+            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                   [(ngModel)]="userExtra.lastName" required/>
+            <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.lastName?.errors?.required"
+                       jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.userExtra.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                   [(ngModel)]="userExtra.email"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.userExtra.phoneNumber" for="field_phoneNumber">Phone
+                Number</label>
+            <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                   [(ngModel)]="userExtra.phoneNumber" required/>
+            <div [hidden]="!(editForm.controls.phoneNumber?.dirty && editForm.controls.phoneNumber?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.phoneNumber?.errors?.required"
+                       jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.userExtra.comments" for="field_comments">Comments</label>
+            <input type="text" class="form-control" name="comments" id="field_comments"
+                   [(ngModel)]="userExtra.comments"/>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.userExtra.location" for="field_location">Location</label>
+            <select class="form-control" id="field_location" name="location" [(ngModel)]="userExtra.location">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="locationOption.id === userExtra.location?.id ? userExtra.location : locationOption"
+                        *ngFor="let locationOption of locations; trackBy: trackLocationById">{{locationOption.id}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

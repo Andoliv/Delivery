@@ -1,0 +1,33 @@
+{
+    "deliveryApp": {
+        "delivery": {
+            "home": {
+                "title": "Deliveries",
+                "createLabel": "Criar novo Delivery",
+                "createOrEditLabel": "Criar ou editar Delivery"
+            },
+            "created": "Um novo Delivery foi criado com o identificador {{ param }}",
+            "updated": "Um Delivery foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Delivery foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Delivery {{ id }}?"
+            },
+            "detail": {
+                "title": "Delivery"
+            },
+            "title": "Title",
+            "description": "Description",
+            "value": "Value",
+            "expectedDistance": "Expected Distance",
+            "travelledDistance": "Travelled Distance",
+            "expectedCost": "Expected Cost",
+            "totalCost": "Total Cost",
+            "deliveryQuality": "Delivery Quality",
+            "paymentQuality": "Payment Quality",
+            "expectedTime": "Expected Time",
+            "deliveryTime": "Delivery Time",
+            "deliveryMan": "Delivery Man",
+            "client": "Client"
+        }
+    }
+}

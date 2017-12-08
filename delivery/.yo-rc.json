@@ -1,0 +1,43 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.andoliv.delivery",
+            "nativeLanguage": "pt-br"
+        },
+        "jhipsterVersion": "4.10.2",
+        "baseName": "delivery",
+        "packageName": "com.andoliv.delivery",
+        "packageFolder": "com/andoliv/delivery",
+        "serverPort": "8081",
+        "authenticationType": "jwt",
+        "hibernateCache": "hazelcast",
+        "clusteredHttpSession": false,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": "eureka",
+        "buildTool": "maven",
+        "enableSocialSignIn": false,
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "2aeda605d5059debab19d93b142e197c2e7136d5",
+        "enableTranslation": true,
+        "applicationType": "microservice",
+        "testFrameworks": [
+            "gatling",
+            "cucumber"
+        ],
+        "jhiPrefix": "jhi",
+        "nativeLanguage": "pt-br",
+        "languages": [
+            "pt-br",
+            "en",
+            "es"
+        ],
+        "clientPackageManager": "yarn",
+        "skipClient": true,
+        "skipUserManagement": true
+    }
+}

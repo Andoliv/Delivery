@@ -1,0 +1,85 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLocationLabel" jhiTranslate="deliveryApp.location.home.createOrEditLabel">Create
+            or edit a Location</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!location.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="location.id" readonly/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.location.streetAddress"
+                   for="field_streetAddress">Street Address</label>
+            <input type="text" class="form-control" name="streetAddress" id="field_streetAddress"
+                   [(ngModel)]="location.streetAddress" required/>
+            <div [hidden]="!(editForm.controls.streetAddress?.dirty && editForm.controls.streetAddress?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.streetAddress?.errors?.required"
+                       jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.location.numberAddress"
+                   for="field_numberAddress">Number Address</label>
+            <input type="number" class="form-control" name="numberAddress" id="field_numberAddress"
+                   [(ngModel)]="location.numberAddress" required/>
+            <div [hidden]="!(editForm.controls.numberAddress?.dirty && editForm.controls.numberAddress?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.numberAddress?.errors?.required"
+                       jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.numberAddress?.errors?.number"
+                       jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.location.neighborhood" for="field_neighborhood">Neighborhood</label>
+            <input type="text" class="form-control" name="neighborhood" id="field_neighborhood"
+                   [(ngModel)]="location.neighborhood" required/>
+            <div [hidden]="!(editForm.controls.neighborhood?.dirty && editForm.controls.neighborhood?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.neighborhood?.errors?.required"
+                       jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.location.postalCode" for="field_postalCode">Postal
+                Code</label>
+            <input type="text" class="form-control" name="postalCode" id="field_postalCode"
+                   [(ngModel)]="location.postalCode"/>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="deliveryApp.location.city" for="field_city">City</label>
+            <select class="form-control" id="field_city" name="city" [(ngModel)]="location.city">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="cityOption.id === location.city?.id ? location.city : cityOption"
+                        *ngFor="let cityOption of cities; trackBy: trackCityById">{{cityOption.id}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
